@@ -1,4 +1,4 @@
-module fizzbuzz
+module github.com/tomato3713/fizzbuzz
 
 go 1.23.3
 
