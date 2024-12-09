@@ -4,6 +4,19 @@ cmp stdout case1.txt
 run 15
 cmp stdout case2.txt 
 
+run hello
+cmp stdout invalid.txt
+
+run 0 1
+cmp stdout usage.txt
+
+run
+cmp stdout usage.txt
+
+-- usage.txt --
+Usage: fizzbuzz <number>
+-- invalid.txt --
+Invalid number
 -- case1.txt --
 1
 -- case2.txt --

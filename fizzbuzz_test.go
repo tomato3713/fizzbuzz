@@ -18,10 +18,6 @@ func execMain() script.Cmd {
 			Args:    "args...",
 		},
 		func(s *script.State, args ...string) (script.WaitFunc, error) {
-			if len(args) != 1 {
-				return nil, script.ErrUsage
-			}
-
 			return func(state *script.State) (string, string, error) {
 				r, w, err := os.Pipe()
 				if err != nil {
@@ -32,7 +28,8 @@ func execMain() script.Cmd {
 				stdout := os.Stdout
 				os.Stdout = w
 
-				os.Args = []string{"fizzbuzz", args[0]}
+				cmdArgs := append([]string{"fizzbuzz"}, args...)
+				os.Args = cmdArgs
 				main()
 
 				// restore stdout

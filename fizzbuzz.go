@@ -10,12 +10,14 @@ func main() {
 	// os.Args[0] is the name of the command
 	args := os.Args[1:]
 	if len(args) != 1 {
-		panic("Usage: fizzbuzz <number>")
+		fmt.Println("Usage: fizzbuzz <number>")
+		return
 	}
 
 	max, err := strconv.ParseUint(args[0], 10, 64)
 	if err != nil {
-		panic("Invalid number")
+		fmt.Println("Invalid number")
+		return
 	}
 
 	for v := range max + 1 {
