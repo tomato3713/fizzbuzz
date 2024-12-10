@@ -48,16 +48,10 @@ func execMain() script.Cmd {
 	)
 }
 
-func customEngine(engine *script.Engine) map[string]script.Cmd {
-	cmds := script.DefaultCmds()
-	cmds["run"] = execMain()
-	return cmds
-}
-
 func TestAll(t *testing.T) {
 	ctx := context.Background()
 	engine := script.NewEngine()
-	engine.Cmds = customEngine(engine)
+	engine.Cmds["run"] = execMain()
 	env := os.Environ()
 	scripttest.Test(t, ctx, engine, env, "testdata/*.txt")
 }
